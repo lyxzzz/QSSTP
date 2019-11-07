@@ -1,0 +1,23 @@
+#!/bin/bash
+accept_port=8008
+accept_ip=127.0.0.1
+file_path=test.txt
+mws=500
+mss=50
+timeout=1000
+pdrop=0.5
+pdelay=0.1
+maxdelay=1000
+gamma=9
+seed=100
+
+#require=0, fatal=1, info=2, debug=3, trace=4
+log_level=2
+
+case $1 in
+    "gdb"|"g")
+        gdb --args ./sender $accept_ip $accept_port $file_path $mws $mss $timeout $pdrop $pdelay $maxdelay $gamma $seed $log_level 
+        ;;
+    *)
+        ./sender $accept_ip $accept_port $file_path $mws $mss $timeout $pdrop $pdelay $maxdelay $gamma $seed $log_level 
+esac

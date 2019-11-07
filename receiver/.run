@@ -1,0 +1,13 @@
+#!/bin/bash
+listen_port=8008
+file_path=test.txt
+#require=0, fatal=1, info=2, debug=3, trace=4
+log_level=2
+
+case $1 in
+    "gdb"|"g")
+        gdb --args ./receiver $listen_port $file_path $log_level
+        ;;
+    *)
+        ./receiver $listen_port $file_path $log_level
+esac
